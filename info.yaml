@@ -1,56 +1,53 @@
-# Tiny Tapeout project information
 project:
-  title:        "PUCV Test 1"      # Project title
-  author:       "Jorge Marin"      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Test 1 for PUCV workshop"      # One line description of what your project does
-  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
-
-  # How many tiles your design occupies? A single tile is about 167x108 uM.
-  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
-
-  # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_jmarin_test1"
-
-  # List your project's source files here.
-  # Source files must be in ./src and you must list each source file separately, one per line.
-  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  title: "PUCV 3LFCC Controller"
+  author: "Jorge Marin / PUCV"
+  discord: ""
+  description: "3LFCC flying-capacitor controller with dual ADS1115 I2C ADCs, phase-shift PWM, OLED display and UART control"
+  language: "Verilog"
+  clock_hz: 27000000
+  tiles: "8x2"
+  top_module: "tt_um_jmarin_3lfcc"
   source_files:
     - "project.v"
-
-# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
-# This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
+    - "top.v"
+    - "Comparator.v"
+    - "Dead_Time_Generator.v"
+    - "PS_PWM.v"
+    - "Signal_Generator_0phase.v"
+    - "Signal_Generator_180phase.v"
+    - "adc.v"
+    - "fcc_fixpt.v"
+    - "i2c.v"
+    - "screen.v"
+    - "text.v"
+    - "font_rom.v"
+    - "timer_control.v"
+    - "toDec.v"
+    - "toHex.v"
+    - "uart.v"
 pinout:
-  # Inputs
-  ui[0]: "na"
-  ui[1]: "na"
-  ui[2]: "na"
-  ui[3]: "na"
-  ui[4]: "na"
-  ui[5]: "na"
-  ui[6]: "na"
-  ui[7]: "na"
-
-  # Outputs
-  uo[0]: "out0"
-  uo[1]: "out1"
-  uo[2]: "out2"
-  uo[3]: "out3"
-  uo[4]: "out4"
-  uo[5]: "out5"
-  uo[6]: "out6"
-  uo[7]: "out7"
-
-  # Bidirectional pins
-  uio[0]: "na"
-  uio[1]: "na"
-  uio[2]: "na"
-  uio[3]: "na"
-  uio[4]: "na"
-  uio[5]: "na"
-  uio[6]: "na"
-  uio[7]: "na"
-
-# Do not change!
+  ui[0]: "BTN1"
+  ui[1]: "UART_RX"
+  ui[2]: "unused"
+  ui[3]: "unused"
+  ui[4]: "unused"
+  ui[5]: "unused"
+  ui[6]: "unused"
+  ui[7]: "unused"
+  uo[0]: "PWM0"
+  uo[1]: "PWM1"
+  uo[2]: "PWM2"
+  uo[3]: "PWM3"
+  uo[4]: "DEBUG_CONST1"
+  uo[5]: "HEARTBEAT"
+  uo[6]: "DEBUG_CONST0"
+  uo[7]: "DEBUG_CONST0"
+  uio[0]: "ADC1_SCL"
+  uio[1]: "ADC2_SCL"
+  uio[2]: "OLED_SCLK"
+  uio[3]: "OLED_SDIN"
+  uio[4]: "OLED_CS"
+  uio[5]: "OLED_DC"
+  uio[6]: "ADC1_SDA_BIDIR"
+  uio[7]: "ADC2_SDA_BIDIR"
 yaml_version: 6
